@@ -21,7 +21,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
+    gap: 1rem;
+
 }
 
 
@@ -33,6 +34,7 @@ body {
 
     border-radius: 1rem;
 
+    margin: 0 !important;
 
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
@@ -58,7 +60,7 @@ body {
 .group_div_heading {
     font-family: 'Roboto', sans-serif;
     color: white;
-    font-size: large;
+    font-size: 1.8rem;
     letter-spacing: 0.6px;
 
     margin-left: 1rem;
@@ -297,9 +299,154 @@ body {
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-rows: repeat(7, 1fr);
 
     place-items: center;
 
     gap: 0.5rem;
+    padding: 0;
+}
+
+.create_btn {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+
+
+
+
+.user_names,
+.modal_names {
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+
+
+
+}
+
+
+
+ModalFooter{
+    background-color: red !important;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 950px) {
+
+
+    .home_base_div {
+        gap: 1.5rem;
+    }
+
+}
+
+
+
+
+@media screen and (max-width: 870px) {
+
+
+    .group_div_base {
+        width: 20rem;
+    }
+
+}
+
+
+
+@media screen and (max-width: 700px) {
+
+    .home_base_div {
+
+        height: min-content;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .group_div_base {
+        width: 90%;
+        height: 100vh;
+        margin: 0 !important;
+
+
+    }
+
+    body {
+        padding-bottom: 1.5rem;
+    }
+
+
+
+
+}
+
+
+
+
+
+@media screen and (max-width: 450px) {
+
+    .home_base_div {
+
+        height: min-content;
+        flex-direction: column;
+        padding: 0;
+    }
+
+
+    .group_div_base {
+        width: 98%;
+        height: 100vh;
+
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+
+    }
+
+
+    .group_div_heading {
+        font-size: 1.5rem;
+    }
+
+
+    .create_btn {
+        font-size: small;
+    }
+
+
+}
+
+
+
+@media screen and (max-width: 500px) {
+
+
+    .users_list_moddal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+
+}
+
+
+
+
+@media screen and (max-width: 350px) {
+
+
+    .users_list_moddal {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+
 }

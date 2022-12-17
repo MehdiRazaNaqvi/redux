@@ -48,7 +48,7 @@ export const counterSlice = createSlice({
 
 
 
-  name: 'counter',
+  name: 'groups',
 
   initialState,
 

@@ -5,9 +5,11 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import counterReducer from './counterslice';
+// import groupReducer from './groups';
 
 const reducers = combineReducers({
     counter : counterReducer,
+    // group : Reducer,
 });
 
 const persistConfig = {
