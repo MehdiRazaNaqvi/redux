@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { current } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-
-
 
 const colors = ["success", "danger", "primary", "info", "warning"]
 let i = 0
@@ -12,7 +11,7 @@ const initialState = {
 
   groups: [
     { users: [{ name: "John", group_id: "b", id: "1243" }, { name: "Mark", group_id: "b", id: "124124" }], name: "Football", color: "warning", id: "b" },
-    // { users: [{ name: "Ahsan", group_id: "c", id: "325325" }, { name: "Akash", group_id: "c", id: "325" }, { name: "Imran", group_id: "c", id: "323" }, { name: "Faizan", group_id: "c", id: "322" }], name: "Cricket", color: "info", id: "c" }
+    { users: [{ name: "Ahsan", group_id: "c", id: "325325" }, { name: "Akash", group_id: "c", id: "325" }, { name: "Imran", group_id: "c", id: "323" }, { name: "Faizan", group_id: "c", id: "322" }], name: "Cricket", color: "info", id: "c" }
 
   ],
 
@@ -23,19 +22,15 @@ const initialState = {
     // { name: "Raza", group_id: "a", id: "123" },
     { name: "John", group_id: "b", id: "1243" },
     { name: "Mark", group_id: "b", id: "124124" },
-    // { name: "Ahsan", group_id: "c", id: "325325" },
-    // { name: "Akash", group_id: "c", id: "325" },
-    // { name: "Imran", group_id: "c", id: "323" },
-    // { name: "Faizan", group_id: "c", id: "322" },
+    { name: "Ahsan", group_id: "c", id: "325325" },
+    { name: "Akash", group_id: "c", id: "325" },
+    { name: "Imran", group_id: "c", id: "323" },
+    { name: "Faizan", group_id: "c", id: "322" },
 
 
   ],
 
 
-  // ungrouped_users: [
-
-
-  // ]
 
 
 }
@@ -116,8 +111,29 @@ export const counterSlice = createSlice({
 
 
 
-    }
+    },
 
+
+
+
+    assign_group: (state, action) => {
+
+      const user = state.users.filter(r => r.group_id == null || r.group_id == undefined )[Math.floor(Math.random() * Object.keys(state.users.filter(v => v.group_id == null || v.group_id == undefined)).length)]
+      const group = state.groups[parseInt(Object.keys(state.groups)[Math.floor(Math.random() * Object.keys(state.groups).length)])]
+
+
+
+      if (user) {
+        user.group_id = group.id
+        group.users = [...group.users, user]
+
+        toast.success(`${user.name} added to ${group.name}`)
+      }
+      else {
+        toast.error("There are no free users")
+      }
+
+    }
 
 
 
@@ -132,6 +148,6 @@ export const counterSlice = createSlice({
 
 
 
-export const { remove_user_from_group, add_user, add_group } = counterSlice.actions
+export const { remove_user_from_group, add_user, add_group, assign_group } = counterSlice.actions
 
 export default counterSlice.reducer

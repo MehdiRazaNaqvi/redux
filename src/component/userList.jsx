@@ -25,11 +25,14 @@ import { useState } from "react"
 
 
 import { RxCrossCircled } from "react-icons/rx"
-import { remove_user_from_group, add_user, add_group } from "../store/counterslice"
+import { remove_user_from_group, add_user, add_group, assign_group } from "../store/counterslice"
 
 import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
 
+import CreateUser from "../modals/create_user"
+import AssociateUser from "./associate_user"
 
+import AddUser from "../component/addUser"
 
 
 const App = () => {
@@ -54,54 +57,13 @@ const App = () => {
 
         <div className="group_div_base">
 
-            
+
             <Modal centered isOpen={create_user.open}>
-
-                <ModalHeader>User</ModalHeader>
-                <Form onSubmit={(e) => { e.preventDefault(); dispatch(add_user(create_user)); set_create_user({ ...create_user, open: false }) }}>
-
-                    <ModalBody>
-
-                        <FormGroup>
-
-                            <Input required onChange={(e) => set_create_user({ ...create_user, name: e.target.value })} placeholder="Enter user name"></Input>
-
-                        </FormGroup>
-
-                        <FormGroup>
-
-                            <Select getOptionLabel={option => option.name}
-                                getOptionValue={option => option.name} onChange={(e) => set_create_user({ ...create_user, group_id: e.id })} options={groups} className="merchant_reg_input_field" />
-
-
-
-                        </FormGroup>
-
-
-
-
-
-                    </ModalBody>
-
-
-                    <ModalFooter>
-
-
-                        <Button type="submit" color="primary">
-                            Add User
-                        </Button>
-                        <Button onClick={() => set_create_user({ ...create_user, open: false })} color="secondary">
-                            Back
-                        </Button>
-                    </ModalFooter>
-
-
-                </Form>
+                <CreateUser create_user={create_user} set_create_user={set_create_user} />
             </Modal>
 
 
-            <span className="group_div_top_bar"> <span className="group_div_heading">Users</span> <Button style={{ marginRight: "1.5rem" }} className="create_btn" onClick={() => set_create_user({ open: true })}>+ Create User</Button>  </span>
-
+            <AddUser create_user={create_user} set_create_user={set_create_user} />
 
             <span className="group_div_middle group1_midle">
 
@@ -112,9 +74,8 @@ const App = () => {
             </span>
 
 
-            <span className="group_div_last">
-                <Button className="associate_btn"> <ImAttachment style={{ marginRight: "0.1rem" }} color="lightgray" /> Associate User with Group</Button>
-            </span>
+
+            <AssociateUser />
 
 
         </div>

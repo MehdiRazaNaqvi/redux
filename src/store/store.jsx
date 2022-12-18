@@ -6,11 +6,14 @@ import thunk from 'redux-thunk';
 
 import counterReducer from './counterslice';
 // import groupReducer from './groups';
+// import userReducer from './users';
 
 const reducers = combineReducers({
     counter : counterReducer,
-    // group : Reducer,
+    // group: groupReducer,
+    // user: userReducer,
 });
+
 
 const persistConfig = {
     key: 'root',

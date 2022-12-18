@@ -25,11 +25,16 @@ import { useState } from "react"
 
 
 import { RxCrossCircled } from "react-icons/rx"
-import { remove_user_from_group, add_user, add_group } from "../store/counterslice"
+import { add_group, remove_user_from_group, assign_group } from "../store/counterslice"
 
 import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
 
+import ViewModal from "../modals/view"
+import GroupModal from "../modals/create_group"
+import AssociateGroup from "../component/associate_group"
 
+
+import AddGroup from "../component/addGroup"
 
 
 const App = () => {
@@ -47,6 +52,11 @@ const App = () => {
 
 
 
+
+
+
+
+
     return (
 
         <div className="group_div_base">
@@ -54,73 +64,21 @@ const App = () => {
 
 
             <Modal centered isOpen={view_all.open} >
-                <ModalHeader>  <Badge color={view_all.color}> </Badge>  <span>{view_all.group_name}</span>  </ModalHeader>
-                <ModalBody>
-                    <ol className="users_list_moddal">
-                        {view_all.data.map((v, i) => (
-                            <li key={i}> <Button size="sm" className="modal_names" style={{ width: "7rem", overflow: "eclipse" }} color={view_all.color}>{v.name}</Button> </li>
-                        ))}
-
-                    </ol>
-                </ModalBody>
-                <ModalFooter>
-
-                    <Button onClick={() => set_view_all({ open: false, data: [] })} color="secondary">
-                        Back
-                    </Button>
-
-                </ModalFooter>
+                <ViewModal view_all={view_all} set_view_all={set_view_all} />
             </Modal>
 
 
 
 
             <Modal centered isOpen={create_group.open}>
-
-
-                <ModalHeader>Add Group</ModalHeader>
-
-                <Form onSubmit={(e) => { e.preventDefault(); dispatch(add_group({ ...create_group, id: Math.floor((1 + Math.random()) * 0x12344) })); set_create_group({ ...create_group, open: false }) }}>
-                    <ModalBody>
-
-
-
-                        <FormGroup>
-
-                            <Input required onChange={(e) => set_create_group({ ...create_group, name: e.target.value })} placeholder="Enter group name"></Input>
-
-                            {/* <FormFeedback invalid className="form_feedback_signup_page">
-                Please enter a valid name
-            </FormFeedback> */}
-                        </FormGroup>
-
-                        {/* <FormGroup>
-
-            <Select isMulti getOptionLabel={option => option.name}
-                getOptionValue={option => option.name} onChange={(e) => { add_a_group(e) }} options={users.filter(v => v.group_id == null)} className="merchant_reg_input_field" />
-
-        </FormGroup> */}
-
-                        {/* set_create_group({ ...create_group, users: e }) */}
-
-
-
-                    </ModalBody>
-                    <ModalFooter>
-
-
-                        <Button type="submit" color="primary">
-                            Add Group
-                        </Button>
-                        <Button onClick={() => set_create_group({ ...create_group, open: false })} color="secondary">
-                            Back
-                        </Button>
-                    </ModalFooter>
-                </Form>
+                <GroupModal create_group={create_group} set_create_group={set_create_group} />
             </Modal>
 
 
-            <span className="group_div_top_bar"> <span className="group_div_heading">Groups</span> <Button style={{ marginRight: "1.5rem" }} className="create_btn" onClick={() => set_create_group({ ...create_group, open: true })}>+ Create Group</Button>  </span>
+
+
+
+            <AddGroup create_group={create_group} set_create_group={set_create_group} />
 
 
             <span className="group_div_middle group_div2_middle">
@@ -155,9 +113,7 @@ const App = () => {
             </span>
 
 
-            <span className="group_div_last">
-                <Button className="associate_btn"> <ImAttachment style={{ marginRight: "0.1rem" }} color="lightgray" /> Associate Group with User</Button>
-            </span>
+            <AssociateGroup />
 
 
         </div>
