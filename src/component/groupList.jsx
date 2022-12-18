@@ -2,11 +2,6 @@
 
 
 
-
-
-
-
-
 import { useDispatch, useSelector } from "react-redux"
 import "../style/home.css"
 
@@ -15,25 +10,25 @@ import "../style/home.css"
 
 import { Badge, Button } from "reactstrap"
 
-import { ImAttachment } from "react-icons/im"
-import Select from 'react-select'
 
-
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
-import { BsCircle } from "react-icons/bs"
 import { useState } from "react"
 
-
+// ICON
 import { RxCrossCircled } from "react-icons/rx"
-import { add_group, remove_user_from_group, assign_group } from "../store/counterslice"
 
-import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
+// REDUCER FUNCTION 
+import { remove_user_from_group } from "../store/counterslice"
 
+
+// HERE WE ARE IMPORTING VIEW MODAL  , CREATE GROUP MODAL 
 import ViewModal from "../modals/view"
 import GroupModal from "../modals/create_group"
+
+
+// WE ARE IMPORTING LAST ASSOCIATE GROUP BUTTON
 import AssociateGroup from "../component/associate_group"
 
-
+// WE ARE IMPORTING TOP ADD GROUP BUTTON
 import AddGroup from "../component/addGroup"
 
 
@@ -42,7 +37,6 @@ const App = () => {
     const dispatch = useDispatch()
 
     const [view_all, set_view_all] = useState({ open: false, data: [] })
-    const [create_user, set_create_user] = useState({ open: false, name: "", group_id: null })
     const [create_group, set_create_group] = useState({ open: false, name: "", users: [], color: "" })
 
 
@@ -63,21 +57,18 @@ const App = () => {
 
 
 
-            <Modal centered isOpen={view_all.open} >
-                <ViewModal view_all={view_all} set_view_all={set_view_all} />
-            </Modal>
+            {/* VIEW ALL USERS  MODAL */}
+            <ViewModal view_all={view_all} set_view_all={set_view_all} />
+
+
+
+            {/* GROUP MODAL */}
+            <GroupModal create_group={create_group} set_create_group={set_create_group} />
 
 
 
 
-            <Modal centered isOpen={create_group.open}>
-                <GroupModal create_group={create_group} set_create_group={set_create_group} />
-            </Modal>
-
-
-
-
-
+            {/* TOP PART OF GROUP DIV */}
             <AddGroup create_group={create_group} set_create_group={set_create_group} />
 
 
@@ -111,8 +102,9 @@ const App = () => {
 
 
             </span>
+            
 
-
+            {/* LAST ASSOCIATE PART OF GROUP DIV */}
             <AssociateGroup />
 
 

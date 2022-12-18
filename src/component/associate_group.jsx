@@ -17,11 +17,12 @@ import "../style/home.css"
 
 import { Button } from "reactstrap"
 
+
+// ICON
 import { ImAttachment } from "react-icons/im"
 
-import { useState } from "react"
 
-
+// REDUCER FUNCTION
 import { assign_group } from "../store/counterslice"
 
 

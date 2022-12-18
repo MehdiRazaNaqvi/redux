@@ -4,23 +4,17 @@ import "../style/home.css"
 
 
 
-import { Badge, Button } from "reactstrap"
 
-import Select from 'react-select'
-
-
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 import { useState } from "react"
 
 
-import { add_user } from "../store/counterslice"
-import { add_group } from "../store/counterslice"
 
-import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
+// IMPORTING TOAST
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+// IMPORTING 2 COMPONENTS OF USER AND GROUP
 import UserList from "../component/userList"
 import GroupList from "../component/groupList"
 
@@ -28,20 +22,12 @@ import GroupList from "../component/groupList"
 const App = () => {
 
 
-    const dispatch = useDispatch()
 
-    const [view_all, set_view_all] = useState({ open: false, data: [] })
-    const [create_user, set_create_user] = useState({ open: false, name: "", group_id: null })
     const [create_group, set_create_group] = useState({ open: false, name: "", users: [], color: "" })
 
 
     const state = useSelector(state => state.counter)
 
-    // const groups = useSelector(state => state.counter.groups)
-    // const users = useSelector(state => state.counter.users)
-
-    const groups = useSelector(state => state.counter.groups)
-    const users = useSelector(state => state.counter.users)
 
 
 
@@ -73,7 +59,6 @@ const App = () => {
 
 
 
-    console.log(state)
 
 
     return (
@@ -84,7 +69,7 @@ const App = () => {
             <ToastContainer />
 
 
-    
+
             <UserList />
 
             <GroupList />

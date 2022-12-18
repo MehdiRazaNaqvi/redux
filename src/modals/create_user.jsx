@@ -1,27 +1,24 @@
 
 
 
-import { Badge, Button } from "reactstrap"
+import { Button } from "reactstrap"
 
-import { ImAttachment } from "react-icons/im"
+// IMPORTING SELECT LIBRARYY
 import Select from 'react-select'
 
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
-import { BsCircle } from "react-icons/bs"
-import { useState } from "react"
 
+// IMPORTING REDUCER FUNCTION
+import { add_user } from "../store/counterslice"
 
-import { RxCrossCircled } from "react-icons/rx"
-import { add_group, remove_user_from_group, assign_group , add_user } from "../store/counterslice"
-
-import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
+import { Input, Form, FormGroup} from "reactstrap"
 
 
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 
-const App = ({ create_user , set_create_user }) => {
+const App = ({ create_user, set_create_user }) => {
 
 
 
@@ -29,52 +26,56 @@ const App = ({ create_user , set_create_user }) => {
 
 
     const groups = useSelector(state => state.counter.groups)
-    const users = useSelector(state => state.counter.users)
 
 
 
     return (
         <span>
-            <ModalHeader>User</ModalHeader>
-            <Form onSubmit={(e) => { e.preventDefault(); dispatch(add_user(create_user)); set_create_user({ ...create_user, open: false }) }}>
+            <Modal centered isOpen={create_user.open}>
+                <ModalHeader>User</ModalHeader>
+                <Form onSubmit={(e) => { e.preventDefault(); dispatch(add_user(create_user)); set_create_user({ ...create_user, open: false }) }}>
 
-                <ModalBody>
+                    <ModalBody>
 
-                    <FormGroup>
+                        <FormGroup>
 
-                        <Input required onChange={(e) => set_create_user({ ...create_user, name: e.target.value })} placeholder="Enter user name"></Input>
+                            <Input required onChange={(e) => set_create_user({ ...create_user, name: e.target.value })} placeholder="Enter user name"></Input>
 
-                    </FormGroup>
+                        </FormGroup>
 
-                    <FormGroup>
+                        <FormGroup>
 
-                        <Select getOptionLabel={option => option.name}
-                            getOptionValue={option => option.name} onChange={(e) => set_create_user({ ...create_user, group_id: e.id })} options={groups} className="merchant_reg_input_field" />
-
-
-
-                    </FormGroup>
+                            <Select getOptionLabel={option => option.name}
+                                getOptionValue={option => option.name} onChange={(e) => set_create_user({ ...create_user, group_id: e.id })} options={groups} className="merchant_reg_input_field" />
 
 
 
+                        </FormGroup>
 
 
-                </ModalBody>
 
 
-                <ModalFooter>
+
+                    </ModalBody>
 
 
-                    <Button type="submit" color="primary">
-                        Add User
-                    </Button>
-                    <Button onClick={() => set_create_user({ ...create_user, open: false })} color="secondary">
-                        Back
-                    </Button>
-                </ModalFooter>
+                    <ModalFooter>
 
 
-            </Form>
+                        <Button type="submit" color="primary">
+                            Add User
+                        </Button>
+                        <Button onClick={() => set_create_user({ ...create_user, open: false })} color="secondary">
+                            Back
+                        </Button>
+                    </ModalFooter>
+
+
+                </Form>
+            </Modal>
+
+
+
         </span>
 
 

@@ -10,36 +10,17 @@
 
 
 
-import { useDispatch, useSelector } from "react-redux"
 import "../style/home.css"
 
 
 
 
-import { Badge, Button } from "reactstrap"
-
-import { ImAttachment } from "react-icons/im"
-import Select from 'react-select'
-
-
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
-import { BsCircle } from "react-icons/bs"
-import { useState } from "react"
-
-
-import { RxCrossCircled } from "react-icons/rx"
-import { add_group, remove_user_from_group, assign_group } from "../store/counterslice"
-
-import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
-
-import ViewModal from "../modals/view"
-import GroupModal from "../modals/create_group"
-import AssociateGroup from "../component/associate_group"
+import { Button } from "reactstrap"
 
 
 
 
-const App = ({create_group , set_create_group}) => {
+const App = ({ create_group, set_create_group }) => {
 
 
 

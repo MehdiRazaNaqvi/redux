@@ -7,41 +7,32 @@
 
 
 
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import "../style/home.css"
 
 
 
 
-import { Badge, Button } from "reactstrap"
-
-import { ImAttachment } from "react-icons/im"
-import Select from 'react-select'
+import { Button } from "reactstrap"
 
 
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
-import { BsCircle } from "react-icons/bs"
 import { useState } from "react"
 
 
-import { RxCrossCircled } from "react-icons/rx"
-import { remove_user_from_group, add_user, add_group, assign_group } from "../store/counterslice"
-
-import { Input, Form, FormGroup, FormFeedback } from "reactstrap"
-
+// IMPORTING CREATE USER MODAL
 import CreateUser from "../modals/create_user"
+
+// IMPORTING BOTTOM ASSOCIATE USER BUTTON
 import AssociateUser from "./associate_user"
 
+// IMPORTING TOP CREATE USER BUTTON
 import AddUser from "../component/addUser"
 
 
 const App = () => {
 
-    const dispatch = useDispatch()
 
-    const [view_all, set_view_all] = useState({ open: false, data: [] })
     const [create_user, set_create_user] = useState({ open: false, name: "", group_id: null })
-    const [create_group, set_create_group] = useState({ open: false, name: "", users: [], color: "" })
 
 
 
@@ -57,14 +48,15 @@ const App = () => {
 
         <div className="group_div_base">
 
-
-            <Modal centered isOpen={create_user.open}>
-                <CreateUser create_user={create_user} set_create_user={set_create_user} />
-            </Modal>
+            {/* MODAL */}
+            <CreateUser create_user={create_user} set_create_user={set_create_user} />
 
 
+            {/* TOP BAR OF USER DIV */}
             <AddUser create_user={create_user} set_create_user={set_create_user} />
 
+
+            {/* MIDDLE PART OF YSER DIV */}
             <span className="group_div_middle group1_midle">
 
                 {users && users.map((v, i) =>
@@ -75,6 +67,7 @@ const App = () => {
 
 
 
+            {/* LAST ASSOCIATE PART OF USER DIIV */}
             <AssociateUser />
 
 
