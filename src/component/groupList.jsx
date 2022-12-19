@@ -15,9 +15,10 @@ import { useState } from "react"
 
 // ICON
 import { RxCrossCircled } from "react-icons/rx"
+import { AiOutlineDelete } from "react-icons/ai"
 
 // REDUCER FUNCTION 
-import { remove_user_from_group } from "../store/counterslice"
+import { remove_user_from_group , delete_group } from "../store/counterslice"
 
 
 // HERE WE ARE IMPORTING VIEW MODAL  , CREATE GROUP MODAL 
@@ -74,11 +75,11 @@ const App = () => {
 
             <span className="group_div_middle group_div2_middle">
 
-                {groups.map((r, k) =>
+                {groups?.map((r, k) =>
 
                     <span key={k} className="group2_box">
 
-                        <span className="group2_groupnum"> <Badge color={r.color}> </Badge> {r.name}</span>
+                        <span className="group2_groupnum"> <Badge color={r.color}> </Badge> {r.name}  <AiOutlineDelete onClick={() => dispatch(delete_group(r))} color="white" size={20} className="cross_icon delete_group_icon" /> </span>
 
                         {r.users && r.users.slice(0, 3).map((v, i) =>
                             <Button size="sm" key={i} color={r.color} className="user_names">{v.name} <RxCrossCircled onClick={() => dispatch(remove_user_from_group({ r, v, k, i }))} color="white" size={20} className="cross_icon" /> </Button>

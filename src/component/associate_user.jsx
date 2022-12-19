@@ -36,7 +36,7 @@ const App = () => {
 
     return (
         <span className="group_div_last">
-            <Button className="associate_btn" onClick={() => dispatch(assign_group())} > <ImAttachment style={{ marginRight: "0.1rem" }} color="lightgray" />Associate Group with User</Button>
+            <Button className="associate_btn" onClick={() => dispatch(assign_group())} > <ImAttachment style={{ marginRight: "0.1rem" }} color="lightgray" />Associate User with Group</Button>
         </span>
 
     )

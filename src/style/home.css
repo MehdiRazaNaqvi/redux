@@ -328,12 +328,30 @@ body {
 }
 
 
+.group2_groupnum {
+    position: relative;
+    width: 90%;
 
-ModalFooter{
-    background-color: red !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+
+
+}
+
+.delete_group_icon {
+    display: none;
+
+background-color: transparent !important;
+
 }
 
 
+.group2_groupnum:hover .delete_group_icon {
+    display: flex;
+}
 
 
 

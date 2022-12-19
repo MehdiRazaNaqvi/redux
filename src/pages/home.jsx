@@ -57,9 +57,7 @@ const App = () => {
 
     }
 
-
-
-
+console.log(state)
 
     return (
 

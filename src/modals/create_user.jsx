@@ -12,7 +12,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 // IMPORTING REDUCER FUNCTION
 import { add_user } from "../store/counterslice"
 
-import { Input, Form, FormGroup} from "reactstrap"
+import { Input, Form, FormGroup } from "reactstrap"
 
 
 import { useDispatch } from "react-redux"

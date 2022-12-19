@@ -11,6 +11,8 @@ import { useSelector } from "react-redux"
 import "../style/home.css"
 
 
+// ICON
+import { RxCrossCircled } from "react-icons/rx"
 
 
 import { Button } from "reactstrap"
@@ -28,10 +30,16 @@ import AssociateUser from "./associate_user"
 // IMPORTING TOP CREATE USER BUTTON
 import AddUser from "../component/addUser"
 
+import { useDispatch } from "react-redux"
+
+
+// REDUCER FUNCTION 
+import { delete_user } from "../store/counterslice"
 
 const App = () => {
 
 
+    const dispatch = useDispatch()
     const [create_user, set_create_user] = useState({ open: false, name: "", group_id: null })
 
 
@@ -60,7 +68,7 @@ const App = () => {
             <span className="group_div_middle group1_midle">
 
                 {users && users.map((v, i) =>
-                    <Button size="sm" key={i} color={groups.filter(r => r.id == v.group_id)[0]?.color} className="user_names">{v.name}</Button>
+                    <Button size="sm" key={i} color={groups.filter(r => r.id == v.group_id)[0]?.color} className="user_names">{v.name} <RxCrossCircled onClick={() => dispatch(delete_user(v))} color="white" size={20} className="cross_icon" /> </Button>
                 )}
 
             </span>

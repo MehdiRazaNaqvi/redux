@@ -20,14 +20,11 @@
 
 
 
-import { Badge, Button } from "reactstrap"
+import {  Button } from "reactstrap"
 
-import { ImAttachment } from "react-icons/im"
-import Select from 'react-select'
 
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
-import { useState } from "react"
 
 
 
@@ -38,7 +35,6 @@ import { Input, Form, FormGroup} from "reactstrap"
 
 
 import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
 
 
 
